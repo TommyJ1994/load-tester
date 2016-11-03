@@ -1,0 +1,6 @@
+{
+  "runners": {
+      "locust": {"displayName": "Locust", "installGuide": "pip install locust"},
+      "artillery": {"displayName": "Artillery", "installGuide": "npm install -g artillery"}
+    }
+}
