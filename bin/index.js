@@ -8,7 +8,7 @@ var LOAD_RUNNERS = require('../config/runners.json');
 var options = require( "yargs" )
     .usage( "Usage: $0 [-- runner artillery [--script script.json]" )
     .option( "r", { alias: "runner", describe: "The load runner to use. [artillery, locust].", type: "string" } )
-    .option( "s", { alias: "script", describe: "The locustfile or artillery config containing the load testing instructions.", type: "string" } )
+    .option( "s", { alias: "script", describe: "The load testing instruction set.", type: "string" } )
     .help( "?" )
     .alias( "?", "help" )
     .example( "$0 --runner locust --script load-test.json" )
