@@ -1,5 +1,7 @@
 {
   "locustInstance" : "http://127.0.0.1:8089/",
+  "target": "http://localhost:8001",
+  "endpoints": [],
   "instructions": [
     {},
     {}

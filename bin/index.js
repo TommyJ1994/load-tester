@@ -15,32 +15,37 @@ var options = require( "yargs" )
     .epilog( "Load Tester" )
     .argv;
 
-// load runner not specified
-if (!options.runner) {
-  shell.echo('Error: Runner not Specified. Specify a runner using --runner ');
-  shell.exit(1);
-}
-
-// Invalid load runner specified
-if(options.runner && !checkRunnerExists(options.runner)) {
-  shell.echo('Error: Invalid load runner specified: ', options.runner);
-  shell.exit(1);
-}
-
-// Load test script not specified.
-if (options.runner && !options.script) {
-  shell.echo('Error: Load testing script not Specified. Specify a script using "--script [script.json]"');
-  shell.exit(1);
-}
-
-// Runner and Script Specified
-if (options.runner && options.script) {
-  // check that artillery and locust have been installed on the system
-  var runnerInstalled = checkRunnerInstalled(options.runner);
-  if(!runnerInstalled) {
-    shell.echo('Error: Runner is not installed.');
-    shell.echo('Install', options.runner, 'using', ' ', LOAD_RUNNERS.runners[options.runner].installGuide);
+/**
+* Validate command inputs and issue load testng cslls.
+*/
+function run() {
+  // load runner not specified
+  if (!options.runner) {
+    shell.echo('Error: Runner not Specified. Specify a runner using --runner ');
     shell.exit(1);
+  }
+
+  // Invalid load runner specified
+  if(options.runner && !checkRunnerExists(options.runner)) {
+    shell.echo('Error: Invalid load runner specified: ', options.runner);
+    shell.exit(1);
+  }
+
+  // Load test script not specified.
+  if (options.runner && !options.script) {
+    shell.echo('Error: Load testing script not Specified. Specify a script using "--script [script.json]"');
+    shell.exit(1);
+  }
+
+  // Runner and Script Specified
+  if (options.runner && options.script) {
+    // check that artillery and locust have been installed on the system
+    var runnerInstalled = checkRunnerInstalled(options.runner);
+    if(!runnerInstalled) {
+      shell.echo('Error: Runner is not installed.');
+      shell.echo('Install', options.runner, 'using', ' ', LOAD_RUNNERS.runners[options.runner].installGuide);
+      shell.exit(1);
+    }
   }
 }
 
@@ -65,3 +70,5 @@ function checkRunnerInstalled(runner) {
   }
   return true;
 }
+
+run();
