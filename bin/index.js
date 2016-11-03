@@ -2,7 +2,7 @@
 
 var shell = require("shelljs");
 var artillery = require("../runners/artillery.js");
-var locust = require("../runner/locust.js");
+var locust = require("../runners/locust.js");
 var LOAD_RUNNERS = require('../config/runners.json');
 
 var options = require( "yargs" )
